@@ -1,0 +1,72 @@
+PROMPT PADRONIZADO DE TRIAGEM DE CURRÍCULOS
+
+1. ESCOPO DA ANÁLISE
+- Analise apenas os currículos fornecidos nesta conversa.
+- Se eu informar quantidade, intervalo, lote ou IDs específicos, analise somente essa seleção.
+- Se não houver especificação, analise todos os currículos disponíveis.
+- Avalie cada currículo de forma independente. A nota de um candidato nunca deve ser influenciada pelas notas dos demais.
+- Não faça ranking relativo entre candidatos.
+- Não use informações externas.
+- Não altere os critérios ou pesos.
+
+2. CRITÉRIOS E PESOS (soma = 100)
+
+1. Estatística aplicada: 13
+2. Python avançado: 9
+3. SQL avançado: 14
+4. EDA e manipulação de grandes volumes: 15
+5. Ferramentas de dados (Power BI, Databricks, Tableau ou similares): 16
+6. Formação superior em Estatística, Matemática, Engenharia, Ciência da Computação ou áreas correlatas: 9
+7. Diferencial: experiência e/ou projetos em modelagem, análise de dados ou analytics: 24
+
+3. REGRAS GERAIS DE PONTUAÇÃO
+- Use exclusivamente informações presentes nos currículos.
+- Não invente, complete ou presuma informações ausentes.
+- Atribua somente notas inteiras, de 0 até o peso máximo de cada critério.
+- Se não houver evidência suficiente, atribua 0 ao critério.
+- A simples presença de uma palavra-chave não constitui evidência de domínio.
+- Considere o contexto (experiência, projetos, resultados).
+
+4. RÉGUA DE EVIDÊNCIA
+- Muito Forte → 80–100% do peso
+- Forte → 50–79% do peso
+- Parcial → 26–49% do peso
+- Fraca → 1–25% do peso
+- Sem evidência → 0
+
+5. ORIENTAÇÕES POR CRITÉRIO
+- Estatística: descritiva, inferencial, testes de hipótese, regressão, probabilidade, experimentação, modelagem estatística.
+- Python avançado: pandas, NumPy, SciPy, scikit-learn, pipelines, modelagem, notebooks, automação analítica.
+- SQL avançado: CTEs, window functions, subqueries complexas, otimização, transformação de dados.
+- EDA: limpeza, transformação, outliers, preparação de datasets, grandes volumes.
+- Ferramentas: Power BI, Tableau, Databricks, ferramentas equivalentes de BI/analytics.
+- Formação: somente formação superior concluída. Em andamento = 0.
+- Diferencial: modelagem preditiva, machine learning, análise de dados, projetos quantitativos.
+  → Diferencial claro = nota_diferencial ≥ 12 (metade do peso 24).
+
+6. CLASSIFICAÇÃO
+- APROVADO: nota_total ≥ 70 e diferencial claro (nota_diferencial ≥ 12)
+- RESSALVA: nota_total ≥ 70, mas sem diferencial claro
+- REPROVADO: nota_total < 70
+- NAO_AVALIADO: currículo vazio, ilegível ou sem informações suficientes (todas as notas = 0)
+
+7. CONFIANÇA
+- Alta: informações claras e suficientes
+- Media: algumas lacunas, mas ainda avaliável
+- Baixa: muitas lacunas ou currículo NAO_AVALIADO
+
+8. FORMATO DE SAÍDA
+Gere os resultados em CSV (separado por ponto e vírgula) com exatamente estas colunas:
+
+id;nota_estatistica;nota_python;nota_sql;nota_eda;nota_ferramentas;nota_formacao;nota_diferencial;nota_total;classificacao;confianca;observacao e nome do candidato(a)
+
+- Observação: máxima 120 caracteres, sem ponto e vírgula e sem quebra de linha.
+- Antes do CSV, faça um relatório inicial curto (máximo 8 linhas).
+
+9. REGRAS DE LOTE
+- Processe no máximo 20 currículos por vez.
+- Ao final de cada lote, informe quantos foram analisados e quantos faltam.
+- Mantenha a sequência de IDs entre lotes (não reinicie a numeração).
+
+10. REGRA FINAL DE INTEGRIDADE
+Quando houver dúvida entre pontuar e reconhecer falta de evidência, prefira a opção conservadora (não inferir).
